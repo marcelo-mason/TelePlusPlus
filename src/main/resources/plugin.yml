@@ -1,0 +1,150 @@
+name: TelePlusPlus
+version: 2.0.4
+dev-url: http://dev.bukkit.org/server-mods/teleplusplus/
+main: net.sacredlabyrinth.Phaed.TelePlusPlus.TelePlusPlus
+softdepend: [PreciousStones, VanishNoPacket]
+commands:
+  tp:
+    description: All of the Tele++ commands
+  tpp:
+    description: All of the Tele++ commands
+permissions:
+  tpp.tp.menu:
+    description: perm
+  tpp.tp.player:
+    description: perm
+  tpp.tp.coords:
+    description: perm
+  tpp.tp.here:
+    description: perm
+  tpp.tp.toggle:
+    description: perm
+  tpp.tp.back:
+    description: perm
+  tpp.tp.origin:
+    description: perm
+  tpp.tp.clear:
+    description: perm
+  tpp.others.player:
+    description: perm
+  tpp.others.coords:
+    description: perm
+  tpp.world.tp:
+    description: perm
+  tpp.jump.top:
+    description: perm
+  tpp.jump.up:
+    description: perm
+  tpp.jump.jump:
+    description: perm
+  tpp.mod.above:
+    description: perm
+  tpp.mod.mass:
+    description: perm
+  tpp.mod.tool:
+    description: perm
+  tpp.mod.mover:
+    description: perm
+  tpp.mod.notp:
+    description: perm
+  tpp.mod.notify:
+    description: perm
+  tpp.mod.take:
+    description: perm
+  tpp.admin.bypass.log:
+    description: perm
+  tpp.admin.bypass.notify:
+    description: perm
+  tpp.admin.bypass.notp:
+    description: perm
+  tpp.request:
+    description: perm
+  tpp.*:
+    default: false
+    description: perm
+    children:
+      tpp.tp.menu: true
+      tpp.tp.player: true
+      tpp.tp.coords: true
+      tpp.tp.here: true
+      tpp.tp.toggle: true
+      tpp.tp.back: true
+      tpp.tp.origin: true
+      tpp.tp.clear: true
+      tpp.others.player: true
+      tpp.others.coords: true
+      tpp.world.tp: true
+      tpp.jump.top: true
+      tpp.jump.up: true
+      tpp.jump.jump: true
+      tpp.mod.above: true
+      tpp.mod.mass: true
+      tpp.mod.tool: true
+      tpp.mod.mover: true
+      tpp.mod.notp: true
+      tpp.mod.notify: true
+      tpp.mod.take: true
+      tpp.admin.bypass.log: true
+      tpp.admin.bypass.notify: true
+      tpp.admin.bypass.notp: true
+      tpp.request: true
+  tpp.tp.*:
+    default: false
+    description: perm
+    children:
+      tpp.tp.menu: true
+      tpp.tp.player: true
+      tpp.tp.coords: true
+      tpp.tp.here: true
+      tpp.tp.toggle: true
+      tpp.tp.back: true
+      tpp.tp.origin: true
+      tpp.tp.clear: true
+  tpp.others.*:
+    default: false
+    description: perm
+    children:
+      tpp.others.player: true
+      tpp.others.coords: true
+  tpp.jump.*:
+    default: false
+    description: perm
+    children:
+      tpp.jump.top: true
+      tpp.jump.up: true
+      tpp.jump.jump: true
+  tpp.mod.*:
+    default: false
+    description: perm
+    children:
+      tpp.mod.above: true
+      tpp.mod.mass: true
+      tpp.mod.tool: true
+      tpp.mod.mover: true
+      tpp.mod.notp: true
+      tpp.mod.notify: true
+      tpp.mod.take: true
+  tpp.admin.*:
+    default: false
+    description: perm
+    children:
+      tpp.admin.bypass.log: true
+      tpp.admin.bypass.notify: true
+      tpp.admin.bypass.notp: true
+  tpp.world.*:
+    default: false
+    description: perm
+    children:
+      tpp.world.tp: true
+  tpp.request.*:
+    default: false
+    description: perm
+    children:
+      tpp.request: true
+  tpp.admin.bypass.*:
+    default: false
+    description: perm
+    children:
+      tpp.admin.bypass.log: true
+      tpp.admin.bypass.notify: true
+      tpp.admin.bypass.notp: true
