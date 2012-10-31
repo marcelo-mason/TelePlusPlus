@@ -4,7 +4,9 @@ import net.sacredlabyrinth.Phaed.TelePlusPlus.listeners.TPEntityListener;
 import net.sacredlabyrinth.Phaed.TelePlusPlus.listeners.TPPlayerListener;
 import net.sacredlabyrinth.Phaed.TelePlusPlus.managers.*;
 import org.bukkit.plugin.java.JavaPlugin;
+import ps.org.mcstats.Metrics;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class TelePlusPlus extends JavaPlugin
@@ -43,5 +45,16 @@ public class TelePlusPlus extends JavaPlugin
         log = Logger.getLogger("Minecraft");
 
         getCommand("tp").setExecutor(cm);
+
+        metrics();
+    }
+
+    private void metrics()
+    {
+        try {
+            Metrics metrics = new Metrics(this);
+            metrics.start();
+        } catch (IOException e) {
+        }
     }
 }
