@@ -14,7 +14,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.bukkit:bukkit:1.4.2-R0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.kitteh:VanishNoPacket:3.7" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.sacredlabyrinth.Phaed:PreciousStones:9.5.0-SNAPSHOT" level="project" />
   </component>
 </module>
