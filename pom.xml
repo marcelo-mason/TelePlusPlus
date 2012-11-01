@@ -85,7 +85,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>org.mcstats</pattern>
-                                    <shadedPattern>tpp.org.mcstats</shadedPattern>
+                                    <shadedPattern>ps.org.mcstats</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
