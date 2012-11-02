@@ -4,7 +4,7 @@ import net.sacredlabyrinth.Phaed.TelePlusPlus.listeners.TPEntityListener;
 import net.sacredlabyrinth.Phaed.TelePlusPlus.listeners.TPPlayerListener;
 import net.sacredlabyrinth.Phaed.TelePlusPlus.managers.*;
 import org.bukkit.plugin.java.JavaPlugin;
-import ps.org.mcstats.Metrics;
+import org.mcstats.Metrics;
 
 import java.io.IOException;
 import java.util.logging.Logger;
