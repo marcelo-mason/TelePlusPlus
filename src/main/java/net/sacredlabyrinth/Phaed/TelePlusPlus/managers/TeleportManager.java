@@ -1,5 +1,6 @@
 package net.sacredlabyrinth.Phaed.TelePlusPlus.managers;
 
+import net.sacredlabyrinth.Phaed.TelePlusPlus.TeleHistory;
 import net.sacredlabyrinth.Phaed.TelePlusPlus.TelePlusPlus;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -72,7 +73,6 @@ public class TeleportManager
 
         for (Entity entity : entities)
         {
-
             Location loc = new Location(world, x, y, z, destination.getYaw(), destination.getPitch());
 
             boolean sneaking = false;
@@ -80,13 +80,38 @@ public class TeleportManager
             if (entity instanceof Player)
             {
                 Player player = (Player) entity;
+
                 if (player.isSneaking())
                 {
                     sneaking = true;
                 }
             }
 
+            if (entity instanceof Player)
+            {
+                if (plugin.sm.explosionEffect)
+                {
+                    if (!plugin.pm.isVanished((Player)entity) && !sneaking)
+                    {
+                        world.createExplosion(entity.getLocation(), -1);
+                    }
+                }
+            }
+
             entity.teleport(loc);
+
+            if (plugin.sm.explosionEffect)
+            {
+                if (!plugin.pm.isVanished((Player)entity) && !sneaking)
+                {
+                    world.createExplosion(loc, -1);
+                }
+            }
+
+            if (entity instanceof Player)
+            {
+                TeleHistory.pushLocation((Player)entity, ((Player)entity).getLocation());
+            }
         }
 
         return true;

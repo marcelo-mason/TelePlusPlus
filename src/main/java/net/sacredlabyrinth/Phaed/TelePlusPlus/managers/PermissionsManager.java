@@ -2,6 +2,9 @@ package net.sacredlabyrinth.Phaed.TelePlusPlus.managers;
 
 import net.sacredlabyrinth.Phaed.TelePlusPlus.TelePlusPlus;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.MetadataValue;
+
+import java.util.List;
 
 public class PermissionsManager
 {
@@ -46,5 +49,20 @@ public class PermissionsManager
         }
 
         return player.hasPermission(permission);
+    }
+
+    public boolean isVanished(Player player)
+    {
+        List<MetadataValue> values = player.getMetadata("vanished");
+
+        for (MetadataValue value : values)
+        {
+            if(value.asBoolean())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

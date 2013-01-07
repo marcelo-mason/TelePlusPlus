@@ -26,6 +26,8 @@ public class ItemManager
         ItemStack handitem = player.getItemInHand();
         Inventory inv = player.getInventory();
 
+        inv.contains()
+
         if (!handitem.getType().equals(item))
         {
             if (!handitem.getType().equals(Material.AIR))

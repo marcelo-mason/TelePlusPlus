@@ -46,6 +46,7 @@ public class TelePlusPlus extends JavaPlugin
 
         getCommand("tp").setExecutor(cm);
 
+
         metrics();
     }
 
