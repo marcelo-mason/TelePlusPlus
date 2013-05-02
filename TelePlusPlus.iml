@@ -13,7 +13,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.bukkit:bukkit:1.4.6-R0.3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.bukkit:bukkit:1.5.1-R0.1" level="project" />
     <orderEntry type="library" name="Maven: org.mcstats:metrics:1.1" level="project" />
   </component>
 </module>

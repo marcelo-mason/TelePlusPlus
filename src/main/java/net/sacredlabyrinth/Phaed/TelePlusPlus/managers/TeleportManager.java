@@ -91,26 +91,29 @@ public class TeleportManager
             {
                 if (plugin.sm.explosionEffect)
                 {
-                    if (!plugin.pm.isVanished((Player)entity) && !sneaking)
+                    if (!plugin.pm.isVanished((Player) entity) && !sneaking)
                     {
                         world.createExplosion(entity.getLocation(), -1);
                     }
                 }
             }
 
+            if (entity instanceof Player)
+            {
+                TeleHistory.pushLocation((Player) entity, entity.getLocation());
+            }
+
             entity.teleport(loc);
 
             if (plugin.sm.explosionEffect)
             {
-                if (!plugin.pm.isVanished((Player)entity) && !sneaking)
+                if (entity instanceof Player)
                 {
-                    world.createExplosion(loc, -1);
+                    if (!plugin.pm.isVanished((Player) entity) && !sneaking)
+                    {
+                        world.createExplosion(loc, -1);
+                    }
                 }
-            }
-
-            if (entity instanceof Player)
-            {
-                TeleHistory.pushLocation((Player)entity, ((Player)entity).getLocation());
             }
         }
 
