@@ -63,27 +63,27 @@ public final class CommandManager implements CommandExecutor
 
                 if (sender instanceof Player)
                 {
-                    player = (Player) sender;
+                    player = (Player)sender;
                 }
 
                 if (args.length > 0)
                 {
                     if (args[0].equalsIgnoreCase("more"))
                     {
-                        ChatBlock cb = chatBlocks.get(player.getName());
+                        ChatBlock cb = chatBlocks.get(sender.getName());
 
                         if (cb.size() > 0)
                         {
-                            ChatBlock.sendBlank(player);
+                            ChatBlock.sendBlank(sender);
 
-                            cb.sendBlock(player, plugin.sm.getPageSize());
+                            cb.sendBlock(sender, plugin.sm.getPageSize());
 
                             if (cb.size() > 0)
                             {
-                                ChatBlock.sendBlank(player);
+                                ChatBlock.sendBlank(sender);
                                 ChatBlock.sendMessage(sender, ChatColor.DARK_GRAY + "Type /tp more to view next page.");
                             }
-                            ChatBlock.sendBlank(player);
+                            ChatBlock.sendBlank(sender);
 
                             return true;
                         }
@@ -91,7 +91,7 @@ public final class CommandManager implements CommandExecutor
                         ChatBlock.sendMessage(sender, ChatColor.GOLD + "Nothing more to see.");
                         return true;
                     }
-                    else if (args.length == 3 && Helper.isNumber(args[0]) && Helper.isNumber(args[1]) && Helper.isNumber(args[2]) && plugin.pm.hasPermission(player, plugin.pm.coords) && !plugin.sm.disableCoords)
+                    else if (args.length == 3 && Helper.isNumber(args[0]) && Helper.isNumber(args[1]) && Helper.isNumber(args[2]) && plugin.pm.hasPermission(sender, plugin.pm.coords) && !plugin.sm.disableCoords)
                     {
                         World currentWorld = player.getWorld();
                         Location loc = new Location(currentWorld, Double.parseDouble(args[0]), Double.parseDouble(args[1]), Double.parseDouble(args[2]), player.getLocation().getYaw(), player.getLocation().getPitch());
@@ -118,7 +118,7 @@ public final class CommandManager implements CommandExecutor
                         }
                         return true;
                     }
-                    else if (args[0].equalsIgnoreCase("mass") && plugin.pm.hasPermission(player, plugin.pm.mass) && !plugin.sm.disableMass)
+                    else if (args[0].equalsIgnoreCase("mass") && plugin.pm.hasPermission(sender, plugin.pm.mass) && !plugin.sm.disableMass)
                     {
                         if (args.length == 1)
                         {
@@ -128,9 +128,9 @@ public final class CommandManager implements CommandExecutor
 
                             for (Player teleportee : players)
                             {
-                                if (!canTP(player, teleportee))
+                                if (!canTP(sender, teleportee))
                                 {
-                                    player.sendMessage(ChatColor.RED + "No rights to summon " + teleportee.getName());
+                                    sender.sendMessage(ChatColor.RED + "No rights to summon " + teleportee.getName());
                                     continue;
                                 }
 
@@ -160,7 +160,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("here") && plugin.pm.hasPermission(player, plugin.pm.here) && !plugin.sm.disableHere)
+                    else if (args[0].equalsIgnoreCase("here") && plugin.pm.hasPermission(sender, plugin.pm.here) && !plugin.sm.disableHere)
                     {
                         if (args.length >= 2)
                         {
@@ -217,7 +217,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("top") && plugin.pm.hasPermission(player, plugin.pm.top) && !plugin.sm.disableTop)
+                    else if (args[0].equalsIgnoreCase("top") && plugin.pm.hasPermission(sender, plugin.pm.top) && !plugin.sm.disableTop)
                     {
                         if (args.length == 1)
                         {
@@ -247,7 +247,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("up") && plugin.pm.hasPermission(player, plugin.pm.up) && !plugin.sm.disableUp)
+                    else if (args[0].equalsIgnoreCase("up") && plugin.pm.hasPermission(sender, plugin.pm.up) && !plugin.sm.disableUp)
                     {
                         Location glassloc = player.getLocation();
 
@@ -263,7 +263,7 @@ public final class CommandManager implements CommandExecutor
 
                         if (!plugin.gm.addGlassed(player, targetglass))
                         {
-                            if (plugin.pm.hasPermission(player, plugin.pm.top) && !plugin.sm.disableTop)
+                            if (plugin.pm.hasPermission(sender, plugin.pm.top) && !plugin.sm.disableTop)
                             {
                                 int y = player.getWorld().getHighestBlockYAt(player.getLocation().getBlockX(), player.getLocation().getBlockZ());
                                 loc = new Location(player.getWorld(), player.getLocation().getX(), y, player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
@@ -298,7 +298,7 @@ public final class CommandManager implements CommandExecutor
                         }
                         return true;
                     }
-                    else if (args[0].equalsIgnoreCase("above") && plugin.pm.hasPermission(player, plugin.pm.above) && !plugin.sm.disableAbove)
+                    else if (args[0].equalsIgnoreCase("above") && plugin.pm.hasPermission(sender, plugin.pm.above) && !plugin.sm.disableAbove)
                     {
                         if (args.length >= 2)
                         {
@@ -360,7 +360,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("jump") && plugin.pm.hasPermission(player, plugin.pm.jump) && !plugin.sm.disableJump)
+                    else if (args[0].equalsIgnoreCase("jump") && plugin.pm.hasPermission(sender, plugin.pm.jump) && !plugin.sm.disableJump)
                     {
                         if (args.length == 1)
                         {
@@ -404,7 +404,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("toggle") && plugin.pm.hasPermission(player, plugin.pm.toggle) && !plugin.sm.disableToggle)
+                    else if (args[0].equalsIgnoreCase("toggle") && plugin.pm.hasPermission(sender, plugin.pm.toggle) && !plugin.sm.disableToggle)
                     {
                         if (args.length == 1)
                         {
@@ -427,7 +427,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("back") && plugin.pm.hasPermission(player, plugin.pm.back) && !plugin.sm.disableBack)
+                    else if (args[0].equalsIgnoreCase("back") && plugin.pm.hasPermission(sender, plugin.pm.back) && !plugin.sm.disableBack)
                     {
                         if (args.length == 1)
                         {
@@ -465,7 +465,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("clear") && plugin.pm.hasPermission(player, plugin.pm.clear) && !plugin.sm.disableClear)
+                    else if (args[0].equalsIgnoreCase("clear") && plugin.pm.hasPermission(sender, plugin.pm.clear) && !plugin.sm.disableClear)
                     {
                         if (args.length == 1)
                         {
@@ -484,7 +484,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("origin") && plugin.pm.hasPermission(player, plugin.pm.origin) && !plugin.sm.disableOrigin)
+                    else if (args[0].equalsIgnoreCase("origin") && plugin.pm.hasPermission(sender, plugin.pm.origin) && !plugin.sm.disableOrigin)
                     {
                         if (args.length == 1)
                         {
@@ -522,7 +522,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("mover") && plugin.pm.hasPermission(player, plugin.pm.mover) && !plugin.sm.disableMover)
+                    else if (args[0].equalsIgnoreCase("mover") && plugin.pm.hasPermission(sender, plugin.pm.mover) && !plugin.sm.disableMover)
                     {
                         if (args.length == 1)
                         {
@@ -536,7 +536,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("tool") && plugin.pm.hasPermission(player, plugin.pm.tool) && !plugin.sm.disableTool)
+                    else if (args[0].equalsIgnoreCase("tool") && plugin.pm.hasPermission(sender, plugin.pm.tool) && !plugin.sm.disableTool)
                     {
                         if (args.length == 1)
                         {
@@ -550,7 +550,7 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("request") && plugin.pm.hasPermission(player, plugin.pm.request) && !plugin.sm.disableRequest)
+                    else if (args[0].equalsIgnoreCase("request") && plugin.pm.hasPermission(sender, plugin.pm.request) && !plugin.sm.disableRequest)
                     {
                         if (args.length > 4 && Helper.isNumber(args[1]) && Helper.isNumber(args[2]) && Helper.isNumber(args[3]))
                         {
@@ -630,15 +630,15 @@ public final class CommandManager implements CommandExecutor
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("take") && plugin.pm.hasPermission(player, plugin.pm.request) && !plugin.sm.disableRequest)
+                    else if (args[0].equalsIgnoreCase("take") && plugin.pm.hasPermission(sender, plugin.pm.request) && !plugin.sm.disableRequest)
                     {
                         if (args.length == 1)
                         {
-                            Request req = plugin.rm.takeRequest(player);
+                            Request req = plugin.rm.takeRequest(sender);
 
                             if (req == null)
                             {
-                                player.sendMessage(ChatColor.RED + "All tp requests have been taken");
+                                sender.sendMessage(ChatColor.RED + "All tp requests have been taken");
                                 return true;
                             }
 
@@ -646,24 +646,24 @@ public final class CommandManager implements CommandExecutor
 
                             if (playername == null)
                             {
-                                player.sendMessage(ChatColor.DARK_PURPLE + "The player is no longer online");
+                                sender.sendMessage(ChatColor.DARK_PURPLE + "The player is no longer online");
                                 plugin.rm.finishTakenRequest(req);
                                 return true;
                             }
 
                             playername.sendMessage(ChatColor.DARK_PURPLE + "Your request has been taken");
 
-                            ChatBlock.sendMessage(player, ChatColor.DARK_PURPLE + "[tp] " + ChatColor.WHITE + "[" + req.getPlayerName() + "] " + ChatColor.YELLOW + "requests tp to " + ChatColor.WHITE + (req.getLocation() != null ? Helper.formatLocation(req.getLocation()) : "[" + req.getTargetName() + "]"));
-                            ChatBlock.sendMessage(player, ChatColor.DARK_PURPLE + "[tp] " + ChatColor.YELLOW + "Reason: " + req.getReason());
-                            ChatBlock.sendMessage(player, ChatColor.DARK_PURPLE + "[tp] " + ChatColor.GREEN + "/tp accept" + ChatColor.YELLOW + " or " + ChatColor.RED + "/tp deny");
+                            ChatBlock.sendMessage(sender, ChatColor.DARK_PURPLE + "[tp] " + ChatColor.WHITE + "[" + req.getPlayerName() + "] " + ChatColor.YELLOW + "requests tp to " + ChatColor.WHITE + (req.getLocation() != null ? Helper.formatLocation(req.getLocation()) : "[" + req.getTargetName() + "]"));
+                            ChatBlock.sendMessage(sender, ChatColor.DARK_PURPLE + "[tp] " + ChatColor.YELLOW + "Reason: " + req.getReason());
+                            ChatBlock.sendMessage(sender, ChatColor.DARK_PURPLE + "[tp] " + ChatColor.GREEN + "/tp accept" + ChatColor.YELLOW + " or " + ChatColor.RED + "/tp deny");
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("accept") && plugin.pm.hasPermission(player, plugin.pm.request) && !plugin.sm.disableRequest)
+                    else if (args[0].equalsIgnoreCase("accept") && plugin.pm.hasPermission(sender, plugin.pm.request) && !plugin.sm.disableRequest)
                     {
                         if (args.length == 1)
                         {
-                            Request req = plugin.rm.retrieveTakenRequest(player);
+                            Request req = plugin.rm.retrieveTakenRequest(sender);
 
                             if (req != null)
                             {
@@ -671,7 +671,7 @@ public final class CommandManager implements CommandExecutor
 
                                 if (playername == null)
                                 {
-                                    player.sendMessage(ChatColor.DARK_PURPLE + "The player is no longer online");
+                                    sender.sendMessage(ChatColor.DARK_PURPLE + "The player is no longer online");
                                     return true;
                                 }
 
@@ -686,7 +686,7 @@ public final class CommandManager implements CommandExecutor
 
                                     if (targetplayer == null)
                                     {
-                                        player.sendMessage(ChatColor.DARK_PURPLE + "The target player is no longer online");
+                                        sender.sendMessage(ChatColor.DARK_PURPLE + "The target player is no longer online");
                                         playername.sendMessage(ChatColor.DARK_PURPLE + "The target player is no longer online");
                                         plugin.rm.finishTakenRequest(req);
                                         return true;
@@ -697,36 +697,36 @@ public final class CommandManager implements CommandExecutor
 
                                 plugin.rm.finishTakenRequest(req);
 
-                                String msg = player.getName() + " accepted " + playername.getName() + "'s request";
+                                String msg = sender.getName() + " accepted " + playername.getName() + "'s request";
 
                                 if (plugin.sm.logRequest)
                                 {
-                                    logTp(player, msg);
+                                    logTp(sender, msg);
                                 }
                                 if (plugin.sm.notifyRequest)
                                 {
-                                    notifyTp(player, msg);
+                                    notifyTp(sender, msg);
                                 }
                                 if (plugin.sm.sayRequest)
                                 {
-                                    player.sendMessage(ChatColor.DARK_PURPLE + playername.getName() + " has been teleported.");
+                                    sender.sendMessage(ChatColor.DARK_PURPLE + playername.getName() + " has been teleported.");
                                 }
                             }
                             else
                             {
-                                player.sendMessage(ChatColor.RED + "You have not taken a request");
+                                sender.sendMessage(ChatColor.RED + "You have not taken a request");
                                 return true;
                             }
                             return true;
                         }
                     }
-                    else if (args[0].equalsIgnoreCase("deny") && plugin.pm.hasPermission(player, plugin.pm.request) && !plugin.sm.disableRequest)
+                    else if (args[0].equalsIgnoreCase("deny") && plugin.pm.hasPermission(sender, plugin.pm.request) && !plugin.sm.disableRequest)
                     {
                         if (args.length == 1)
                         {
                             if (args.length == 1)
                             {
-                                Request req = plugin.rm.retrieveTakenRequest(player);
+                                Request req = plugin.rm.retrieveTakenRequest(sender);
 
                                 if (req != null)
                                 {
@@ -734,31 +734,31 @@ public final class CommandManager implements CommandExecutor
 
                                     if (playername == null)
                                     {
-                                        player.sendMessage(ChatColor.DARK_PURPLE + "The player is no longer online");
+                                        sender.sendMessage(ChatColor.DARK_PURPLE + "The player is no longer online");
                                         plugin.rm.finishTakenRequest(req);
                                         return true;
                                     }
 
                                     plugin.rm.finishTakenRequest(req);
-                                    String msg = player.getName() + " denied " + playername.getName() + "'s request";
+                                    String msg = sender.getName() + " denied " + playername.getName() + "'s request";
 
                                     if (plugin.sm.logRequest)
                                     {
-                                        logTp(player, msg);
+                                        logTp(sender, msg);
                                     }
                                     if (plugin.sm.notifyRequest)
                                     {
-                                        notifyTp(player, msg);
+                                        notifyTp(sender, msg);
                                     }
                                     if (plugin.sm.sayRequest)
                                     {
-                                        player.sendMessage(ChatColor.DARK_PURPLE + "You have denied " + playername.getName() + "'s request");
+                                        sender.sendMessage(ChatColor.DARK_PURPLE + "You have denied " + playername.getName() + "'s request");
                                         playername.sendMessage(ChatColor.DARK_PURPLE + "Your tp request has been " + ChatColor.RED + "denied");
                                     }
                                 }
                                 else
                                 {
-                                    player.sendMessage(ChatColor.RED + "You have not taken a request");
+                                    sender.sendMessage(ChatColor.RED + "You have not taken a request");
                                     return true;
                                 }
                                 return true;
@@ -773,7 +773,7 @@ public final class CommandManager implements CommandExecutor
 
                             if (target != null)
                             {
-                                if (plugin.pm.hasPermission(player, plugin.pm.player) && !plugin.sm.disablePlayer)
+                                if (plugin.pm.hasPermission(sender, plugin.pm.player) && !plugin.sm.disablePlayer)
                                 {
                                     if (plugin.sm.isNoCrossWorldTps() && !player.getWorld().equals(target.getWorld()))
                                     {
@@ -814,7 +814,7 @@ public final class CommandManager implements CommandExecutor
                             }
                             else
                             {
-                                if (plugin.pm.hasPermission(player, plugin.pm.world) && !plugin.sm.disableWorld)
+                                if (plugin.pm.hasPermission(sender, plugin.pm.world) && !plugin.sm.disableWorld)
                                 {
                                     World world = plugin.getServer().getWorld(args[0]);
 
@@ -871,9 +871,9 @@ public final class CommandManager implements CommandExecutor
 
                                 if (target != null)
                                 {
-                                    if (!canTP(player, target))
+                                    if (!canTP(sender, target))
                                     {
-                                        player.sendMessage(ChatColor.RED + "No rights to teleport to " + target.getName());
+                                        sender.sendMessage(ChatColor.RED + "No rights to teleport to " + target.getName());
                                         continue;
                                     }
 
@@ -881,7 +881,7 @@ public final class CommandManager implements CommandExecutor
                                 }
                                 else
                                 {
-                                    player.sendMessage(ChatColor.RED + args[i] + " did not match a player");
+                                    sender.sendMessage(ChatColor.RED + args[i] + " did not match a player");
                                 }
                             }
 
@@ -889,52 +889,55 @@ public final class CommandManager implements CommandExecutor
                             {
                                 int targetCount = (args.length - 1) - toLocation;
 
-                                if (targetCount == 1 && plugin.pm.hasPermission(player, plugin.pm.othersPlayer) && !plugin.sm.disableOthersPlayer)
+                                if (targetCount == 1 && plugin.pm.hasPermission(sender, plugin.pm.othersPlayer) && !plugin.sm.disableOthersPlayer)
                                 {
                                     if (Helper.matchUniquePlayer(plugin, args[toLocation + 1]) != null)
                                     {
                                         Player target = Helper.matchUniquePlayer(plugin, args[toLocation + 1]);
 
-                                        if (plugin.sm.isNoCrossWorldTps() && !player.getWorld().equals(target.getWorld()))
+                                        if (player != null)
                                         {
-                                            player.sendMessage(ChatColor.RED + "Sorry cannot to tp across worlds");
-                                            return true;
+                                            if (plugin.sm.isNoCrossWorldTps() && !player.getWorld().equals(target.getWorld()))
+                                            {
+                                                player.sendMessage(ChatColor.RED + "Sorry cannot to tp across worlds");
+                                                return true;
+                                            }
                                         }
 
-                                        if (!canTP(player, target))
+                                        if (!canTP(sender, target))
                                         {
-                                            player.sendMessage(ChatColor.RED + "No rights to teleport " + target.getName());
+                                            sender.sendMessage(ChatColor.RED + "No rights to teleport " + target.getName());
                                             return true;
                                         }
 
                                         if (!plugin.tm.teleport(sources, target))
                                         {
-                                            player.sendMessage(ChatColor.RED + "No free space available for teleport");
+                                            sender.sendMessage(ChatColor.RED + "No free space available for teleport");
                                             return true;
                                         }
 
-                                        String msg = player.getName() + " teleported " + Helper.entityArrayString(sources) + " to " + target.getName() + " [" + printWorld(target.getWorld().getName()) + target.getLocation().getBlockX() + " " + target.getLocation().getBlockY() + " " + target.getLocation().getBlockZ() + "]";
+                                        String msg = sender.getName() + " teleported " + Helper.entityArrayString(sources) + " to " + target.getName() + " [" + printWorld(target.getWorld().getName()) + target.getLocation().getBlockX() + " " + target.getLocation().getBlockY() + " " + target.getLocation().getBlockZ() + "]";
 
                                         if (plugin.sm.logOthersPlayer)
                                         {
-                                            logTp(player, msg);
+                                            logTp(sender, msg);
                                         }
                                         if (plugin.sm.notifyOthersPlayer)
                                         {
-                                            notifyTp(player, msg);
+                                            notifyTp(sender, msg);
                                         }
                                         if (plugin.sm.sayOthersPlayer)
                                         {
-                                            ChatBlock.sendMessage(player, ChatColor.DARK_PURPLE + "Teleported " + Helper.entityArrayString(sources) + " to " + target.getName());
+                                            ChatBlock.sendMessage(sender, ChatColor.DARK_PURPLE + "Teleported " + Helper.entityArrayString(sources) + " to " + target.getName());
                                         }
                                         return true;
                                     }
                                     else
                                     {
-                                        player.sendMessage(ChatColor.RED + "Target did not match any player");
+                                        sender.sendMessage(ChatColor.RED + "Target did not match any player");
                                     }
                                 }
-                                else if (targetCount == 3 && plugin.pm.hasPermission(player, plugin.pm.othersCoords) && !plugin.sm.disableOthersCoords)
+                                else if (targetCount == 3 && plugin.pm.hasPermission(sender, plugin.pm.othersCoords) && !plugin.sm.disableOthersCoords)
                                 {
                                     if (Helper.isNumber(args[toLocation + 1]) && Helper.isNumber(args[toLocation + 2]) && Helper.isNumber(args[toLocation + 3]))
                                     {
@@ -974,7 +977,7 @@ public final class CommandManager implements CommandExecutor
                                     }
                                     else
                                     {
-                                        player.sendMessage(ChatColor.RED + "Target are not valid oordinates");
+                                        player.sendMessage(ChatColor.RED + "Target are not valid coordinates");
                                     }
                                 }
                                 else
@@ -989,7 +992,7 @@ public final class CommandManager implements CommandExecutor
                         }
                         else if (args.length == 4 && Helper.isNumber(args[1]) && Helper.isNumber(args[2]) && Helper.isNumber(args[3]))
                         {
-                            if (plugin.pm.hasPermission(player, plugin.pm.world) && !plugin.sm.disableWorld)
+                            if (plugin.pm.hasPermission(sender, plugin.pm.world) && !plugin.sm.disableWorld)
                             {
                                 World world = plugin.getServer().getWorld(args[0]);
 
@@ -1038,87 +1041,94 @@ public final class CommandManager implements CommandExecutor
                     }
                 }
 
-                if (plugin.pm.hasPermission(player, plugin.pm.menu))
+                if (plugin.pm.hasPermission(sender, plugin.pm.menu))
                 {
-                    ChatBlock cb = getNewChatBlock(player);
+                    ChatBlock cb = getNewChatBlock(sender);
 
-                    if (plugin.pm.hasPermission(player, plugin.pm.player) && !plugin.sm.disablePlayer)
+                    if (player != null)
                     {
-                        cb.addRow(ChatColor.WHITE + "  /tp [player]" + ChatColor.DARK_PURPLE + " - Teleport to another player");
+                        if (plugin.pm.hasPermission(sender, plugin.pm.player) && !plugin.sm.disablePlayer)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp [player]" + ChatColor.DARK_PURPLE + " - Teleport to another player");
+                        }
                     }
-                    if (plugin.pm.hasPermission(player, plugin.pm.othersPlayer) && !plugin.sm.disableOthersPlayer)
+                    if (plugin.pm.hasPermission(sender, plugin.pm.othersPlayer) && !plugin.sm.disableOthersPlayer)
                     {
                         cb.addRow(ChatColor.WHITE + "  /tp [player(s)] to [player]" + ChatColor.DARK_PURPLE + " - Teleport players to player");
                     }
-                    if (plugin.pm.hasPermission(player, plugin.pm.othersCoords) && !plugin.sm.disableOthersCoords)
+                    if (player != null)
                     {
-                        cb.addRow(ChatColor.WHITE + "  /tp [player(s)] to [x] [y] [z]" + ChatColor.DARK_PURPLE + " - Teleport players to coords");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.coords) && !plugin.sm.disableCoords)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp [x] [y] [z]" + ChatColor.DARK_PURPLE + " - Teleport to coordinates");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.world) && !plugin.sm.disableWorld)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp [world] <x> <y> <z>" + ChatColor.DARK_PURPLE + " - Teleport to world");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.here) && !plugin.sm.disableHere)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp here [player(s)]" + ChatColor.DARK_PURPLE + " - Teleport players to you");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.mass) && !plugin.sm.disableMass)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp mass" + ChatColor.DARK_PURPLE + " - Teleport all players to you");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.top) && !plugin.sm.disableTop)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp top" + ChatColor.DARK_PURPLE + " - Teleport to the block highest above you");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.up) && !plugin.sm.disableUp)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp up <height>" + ChatColor.DARK_PURPLE + " - Teleport up on a glass block");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.above) && !plugin.sm.disableAbove)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp above [player] <height>" + ChatColor.DARK_PURPLE + " - Teleport above a player");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.jump) && !plugin.sm.disableJump)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp jump" + ChatColor.DARK_PURPLE + " - Teleport to the block you're looking at");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.toggle) && !plugin.sm.disableToggle)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp toggle" + ChatColor.DARK_PURPLE + " - Toggle teleporting to you on/off");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.back) && !plugin.sm.disableBack)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp back" + ChatColor.DARK_PURPLE + " - Teleport back to your previous locations");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.origin) && !plugin.sm.disableOrigin)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp origin" + ChatColor.DARK_PURPLE + " - Go back to where you were before all tps");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.clear) && !plugin.sm.disableClear)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp clear" + ChatColor.DARK_PURPLE + " - Clear your tp history and " + Helper.friendlyBlockType(Material.getMaterial(plugin.sm.moverItem).toString()).toLowerCase() + " selections");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.tool) && !plugin.sm.disableTool)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp tool" + ChatColor.DARK_PURPLE + " - Get a " + Helper.friendlyBlockType(Material.getMaterial(plugin.sm.toolItem).toString()).toLowerCase() + " to tp yourself around");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.mover) && !plugin.sm.disableMover)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp mover" + ChatColor.DARK_PURPLE + " - Get a " + Helper.friendlyBlockType(Material.getMaterial(plugin.sm.moverItem).toString()).toLowerCase() + " to tp others around");
-                    }
-                    if (plugin.pm.hasPermission(player, plugin.pm.request) && !plugin.sm.disableRequest)
-                    {
-                        cb.addRow(ChatColor.WHITE + "  /tp request [player|x y z] [reason]" + ChatColor.DARK_PURPLE + " - Request tp");
+                        if (plugin.pm.hasPermission(sender, plugin.pm.othersCoords) && !plugin.sm.disableOthersCoords)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp [player(s)] to [x] [y] [z]" + ChatColor.DARK_PURPLE + " - Teleport players to coords");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.coords) && !plugin.sm.disableCoords)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp [x] [y] [z]" + ChatColor.DARK_PURPLE + " - Teleport to coordinates");
+                        }
+
+                        if (plugin.pm.hasPermission(sender, plugin.pm.world) && !plugin.sm.disableWorld)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp [world] <x> <y> <z>" + ChatColor.DARK_PURPLE + " - Teleport to world");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.here) && !plugin.sm.disableHere)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp here [player(s)]" + ChatColor.DARK_PURPLE + " - Teleport players to you");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.mass) && !plugin.sm.disableMass)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp mass" + ChatColor.DARK_PURPLE + " - Teleport all players to you");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.top) && !plugin.sm.disableTop)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp top" + ChatColor.DARK_PURPLE + " - Teleport to the block highest above you");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.up) && !plugin.sm.disableUp)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp up <height>" + ChatColor.DARK_PURPLE + " - Teleport up on a glass block");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.above) && !plugin.sm.disableAbove)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp above [player] <height>" + ChatColor.DARK_PURPLE + " - Teleport above a player");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.jump) && !plugin.sm.disableJump)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp jump" + ChatColor.DARK_PURPLE + " - Teleport to the block you're looking at");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.toggle) && !plugin.sm.disableToggle)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp toggle" + ChatColor.DARK_PURPLE + " - Toggle teleporting to you on/off");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.back) && !plugin.sm.disableBack)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp back" + ChatColor.DARK_PURPLE + " - Teleport back to your previous locations");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.origin) && !plugin.sm.disableOrigin)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp origin" + ChatColor.DARK_PURPLE + " - Go back to where you were before all tps");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.clear) && !plugin.sm.disableClear)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp clear" + ChatColor.DARK_PURPLE + " - Clear your tp history and " + Helper.friendlyBlockType(Material.getMaterial(plugin.sm.moverItem).toString()).toLowerCase() + " selections");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.tool) && !plugin.sm.disableTool)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp tool" + ChatColor.DARK_PURPLE + " - Get a " + Helper.friendlyBlockType(Material.getMaterial(plugin.sm.toolItem).toString()).toLowerCase() + " to tp yourself around");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.mover) && !plugin.sm.disableMover)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp mover" + ChatColor.DARK_PURPLE + " - Get a " + Helper.friendlyBlockType(Material.getMaterial(plugin.sm.moverItem).toString()).toLowerCase() + " to tp others around");
+                        }
+                        if (plugin.pm.hasPermission(sender, plugin.pm.request) && !plugin.sm.disableRequest)
+                        {
+                            cb.addRow(ChatColor.WHITE + "  /tp request [player|x y z] [reason]" + ChatColor.DARK_PURPLE + " - Request tp");
+                        }
                     }
 
                     if (cb.size() > 0)
                     {
                         ChatBlock.sendBlank(sender);
-                        ChatBlock.saySingle(player, ChatColor.LIGHT_PURPLE + "Tele++ " + plugin.getDescription().getVersion() + ChatColor.DARK_GRAY + " ----------------------------------------------------------------------------------");
+                        ChatBlock.saySingle(sender, ChatColor.LIGHT_PURPLE + "Tele++ " + plugin.getDescription().getVersion() + ChatColor.DARK_GRAY + " ----------------------------------------------------------------------------------");
                         ChatBlock.sendBlank(sender);
 
                         boolean more = cb.sendBlock(sender, plugin.sm.getPageSize());
@@ -1143,15 +1153,15 @@ public final class CommandManager implements CommandExecutor
         return false;
     }
 
-    public void notifyTp(Player tool, String msg)
+    public void notifyTp(CommandSender sender, String msg)
     {
-        if (!plugin.pm.hasPermission(tool, plugin.pm.bypassNotify))
+        if (!plugin.pm.hasPermission(sender, plugin.pm.bypassNotify))
         {
             for (Player player : plugin.getServer().getOnlinePlayers())
             {
-                if (plugin.pm.hasPermission(player, plugin.pm.notify))
+                if (plugin.pm.hasPermission(sender, plugin.pm.notify))
                 {
-                    if (tool.getName().equals(player.getName()))
+                    if (sender.getName().equals(player.getName()))
                     {
                         continue;
                     }
@@ -1161,9 +1171,9 @@ public final class CommandManager implements CommandExecutor
         }
     }
 
-    public void logTp(Player tool, String msg)
+    public void logTp(CommandSender sender, String msg)
     {
-        if (!plugin.pm.hasPermission(tool, plugin.pm.bypassLog))
+        if (!plugin.pm.hasPermission(sender, plugin.pm.bypassLog))
         {
             plugin.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "Tele++" + ChatColor.GRAY + ": " + msg);
         }
@@ -1179,9 +1189,9 @@ public final class CommandManager implements CommandExecutor
         return "";
     }
 
-    private boolean canTP(Player player, Player target)
+    private boolean canTP(CommandSender sender, Player target)
     {
-        if (plugin.pm.hasPermission(player, plugin.pm.bypassNoTp))
+        if (plugin.pm.hasPermission(sender, plugin.pm.bypassNoTp))
         {
             return true;
         }

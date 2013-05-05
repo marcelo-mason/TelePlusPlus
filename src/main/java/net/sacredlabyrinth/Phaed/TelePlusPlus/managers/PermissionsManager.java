@@ -1,6 +1,7 @@
 package net.sacredlabyrinth.Phaed.TelePlusPlus.managers;
 
 import net.sacredlabyrinth.Phaed.TelePlusPlus.TelePlusPlus;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.MetadataValue;
 
@@ -41,14 +42,14 @@ public class PermissionsManager
         this.plugin = plugin;
     }
 
-    public boolean hasPermission(Player player, String permission)
+    public boolean hasPermission(CommandSender sender, String permission)
     {
-        if (player == null)
+        if (sender == null)
         {
-            return false;
+            return true;
         }
 
-        return player.hasPermission(permission);
+        return sender.hasPermission(permission);
     }
 
     public boolean isVanished(Player player)

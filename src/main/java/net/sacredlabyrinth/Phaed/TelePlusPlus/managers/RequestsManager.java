@@ -6,6 +6,7 @@ import net.sacredlabyrinth.Phaed.TelePlusPlus.Request;
 import net.sacredlabyrinth.Phaed.TelePlusPlus.TelePlusPlus;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -45,18 +46,18 @@ public class RequestsManager
         shoutRequest(req);
     }
 
-    public Request takeRequest(Player player)
+    public Request takeRequest(CommandSender sender)
     {
-        if (taken.containsKey(player.getName()))
+        if (taken.containsKey(sender.getName()))
         {
-            return taken.get(player.getName());
+            return taken.get(sender.getName());
         }
 
         if (requests.size() > 0)
         {
             Request req = requests.get(0);
             requests.remove(0);
-            taken.put(player.getName(), req);
+            taken.put(sender.getName(), req);
             return req;
         }
 
@@ -68,11 +69,11 @@ public class RequestsManager
         taken.remove(req);
     }
 
-    public Request retrieveTakenRequest(Player player)
+    public Request retrieveTakenRequest(CommandSender sender)
     {
-        if (taken.containsKey(player.getName()))
+        if (taken.containsKey(sender.getName()))
         {
-            Request req = taken.get(player.getName());
+            Request req = taken.get(sender.getName());
             taken.remove(req);
             return req;
         }
