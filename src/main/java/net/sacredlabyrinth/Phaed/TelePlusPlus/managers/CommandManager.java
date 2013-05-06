@@ -1159,7 +1159,7 @@ public final class CommandManager implements CommandExecutor
         {
             for (Player player : plugin.getServer().getOnlinePlayers())
             {
-                if (plugin.pm.hasPermission(sender, plugin.pm.notify))
+                if (plugin.pm.hasPermission(player, plugin.pm.notify))
                 {
                     if (sender.getName().equals(player.getName()))
                     {
